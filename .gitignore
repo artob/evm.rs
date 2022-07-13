@@ -1,2 +1,9 @@
+# macOS
+.DS_Store
+
+# Editor backup files
+*~
+
+# Rust artifacts
 /target
 /Cargo.lock
