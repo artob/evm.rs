@@ -1,9 +1,20 @@
 [package]
 name = "evm_rs"
 version = "0.1.0"
+authors = ["Arto Bendiken <arto@bendiken.net>"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "EVM.rs is a library for decoding and manipulating EVM bytecode."
+documentation = "https://docs.rs/evm_rs"
+readme = "README.md"
+homepage = "https://github.com/artob/evm.rs"
+repository = "https://github.com/artob/evm.rs"
+license = "Unlicense"
+keywords = ["ethereum", "evm", "web3"]
+categories = [
+  "cryptography::cryptocurrencies",
+  "encoding",
+  "parser-implementations",
+]
 
 [dependencies]
 ethnum = "1.2.1"
