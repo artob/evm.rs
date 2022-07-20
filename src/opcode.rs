@@ -5,7 +5,7 @@ use std::fmt;
 
 pub type Program = Vec<Opcode>;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Hash, PartialEq, Eq)]
 pub enum Opcode {
     STOP,                     // 0x00
     ADD,                      // 0x01
