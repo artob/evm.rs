@@ -9,7 +9,7 @@ pub fn encode_program(program: Program) -> Vec<u8> {
         let mut operands = encode_operands(opcode);
         bytecode.append(&mut operands);
     }
-    return bytecode;
+    bytecode
 }
 
 pub fn encode_operands(opcode: &Opcode) -> Vec<u8> {

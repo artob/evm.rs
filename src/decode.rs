@@ -103,7 +103,7 @@ pub fn decode_opcode(input: &[u8]) -> Result<Opcode, DecodeError> {
             buffer[(32 - (n as usize))..32].copy_from_slice(&input[1..=n.into()]);
             PUSHn(
                 n,
-                u256::from_be_bytes(buffer.try_into().unwrap()),
+                u256::from_be_bytes(buffer),
                 buffer[(32 - (n as usize))..32].to_vec(),
             )
         }
