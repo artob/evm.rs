@@ -97,6 +97,15 @@ impl Opcode {
             _ => 1,
         }
     }
+
+    pub fn zeroed(&self) -> Opcode {
+        use Opcode::*;
+        match self {
+            PUSH1(_) => PUSH1(0),
+            PUSHn(n, _, _) => PUSHn(*n, u256::ZERO, vec![0; *n as usize]),
+            _ => self.clone(),
+        }
+    }
 }
 
 impl fmt::Display for Opcode {
