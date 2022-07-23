@@ -5,6 +5,7 @@ pub mod encode;
 pub mod error;
 pub mod opcode;
 pub mod parse;
+pub mod program;
 
 #[cfg(test)]
 mod tests {

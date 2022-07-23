@@ -3,8 +3,6 @@
 use ethnum::u256;
 use std::fmt;
 
-pub type Program = Vec<Opcode>;
-
 #[derive(Clone, Debug, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Opcode {
     STOP,                     // 0x00

@@ -1,24 +1,22 @@
 // This is free and unencumbered software released into the public domain.
 
-use crate::opcode::{Opcode, Program};
+use crate::{
+    opcode::Opcode,
+    program::Program,
+};
 
 pub fn encode_program(program: Program) -> Vec<u8> {
+    encode_opcodes(&program.0)
+}
+
+pub fn encode_opcodes(opcodes: &Vec<Opcode>) -> Vec<u8> {
     let mut bytecode = vec![];
-    for opcode in program.iter() {
+    for opcode in opcodes.iter() {
         bytecode.push(encode_opcode(opcode));
         let mut operands = encode_operands(opcode);
         bytecode.append(&mut operands);
     }
     bytecode
-}
-
-pub fn encode_operands(opcode: &Opcode) -> Vec<u8> {
-    use Opcode::*;
-    match opcode {
-        PUSH1(b) => vec![*b],
-        PUSHn(_, _, bs) => bs.clone(),
-        _ => vec![],
-    }
 }
 
 pub fn encode_opcode(opcode: &Opcode) -> u8 {
@@ -103,5 +101,14 @@ pub fn encode_opcode(opcode: &Opcode) -> u8 {
         REVERT => 0xFD,
         INVALID => 0xFE,
         SELFDESTRUCT => 0xFF,
+    }
+}
+
+pub fn encode_operands(opcode: &Opcode) -> Vec<u8> {
+    use Opcode::*;
+    match opcode {
+        PUSH1(b) => vec![*b],
+        PUSHn(_, _, bs) => bs.clone(),
+        _ => vec![],
     }
 }

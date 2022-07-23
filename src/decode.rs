@@ -4,10 +4,15 @@ use ethnum::u256;
 
 use crate::{
     error::DecodeError,
-    opcode::{Opcode, Program},
+    opcode::Opcode,
+    program::Program,
 };
 
 pub fn decode_program(input: &[u8]) -> Result<Program, DecodeError> {
+    Ok(Program(decode_opcodes(input)?))
+}
+
+pub fn decode_opcodes(input: &[u8]) -> Result<Vec<Opcode>, DecodeError> {
     let mut result = Vec::new();
     let mut input_pos: usize = 0;
     while input_pos < input.len() {
