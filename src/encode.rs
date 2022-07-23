@@ -1,9 +1,6 @@
 // This is free and unencumbered software released into the public domain.
 
-use crate::{
-    opcode::Opcode,
-    program::Program,
-};
+use crate::{opcode::Opcode, program::Program};
 
 pub fn encode_program(program: Program) -> Vec<u8> {
     encode_opcodes(&program.0)

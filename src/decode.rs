@@ -2,11 +2,7 @@
 
 use ethnum::u256;
 
-use crate::{
-    error::DecodeError,
-    opcode::Opcode,
-    program::Program,
-};
+use crate::{error::DecodeError, opcode::Opcode, program::Program};
 
 pub fn decode_program(input: &[u8]) -> Result<Program, DecodeError> {
     Ok(Program(decode_opcodes(input)?))
