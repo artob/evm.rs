@@ -1,17 +1,15 @@
 // This is free and unencumbered software released into the public domain.
 
-pub mod decode;
-pub mod encode;
-pub mod error;
-pub mod opcode;
-pub mod parse;
-pub mod program;
+mod decode;
+mod encode;
+mod error;
+mod opcode;
+mod parse;
+mod program;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
+pub use crate::decode::*;
+pub use crate::encode::*;
+pub use crate::error::*;
+pub use crate::opcode::*;
+pub use crate::parse::*;
+pub use crate::program::*;
