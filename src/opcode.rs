@@ -87,6 +87,69 @@ pub enum Opcode {
 }
 
 impl Opcode {
+    pub fn is_call(&self) -> bool {
+        use Opcode::*;
+        matches!(self, CALL | CALLCODE | DELEGATECALL | STATICCALL)
+    }
+
+    pub fn is_control(&self) -> bool {
+        use Opcode::*;
+        matches!(
+            self,
+            STOP | JUMP | JUMPI | RETURN | REVERT | INVALID | SELFDESTRUCT
+        )
+    }
+
+    pub fn is_dup(&self) -> bool {
+        use Opcode::*;
+        matches!(self, DUP(_))
+    }
+
+    pub fn is_halt(&self) -> bool {
+        use Opcode::*;
+        matches!(self, STOP | RETURN | REVERT | INVALID | SELFDESTRUCT)
+    }
+
+    pub fn is_jump(&self) -> bool {
+        use Opcode::*;
+        matches!(self, JUMP | JUMPI)
+    }
+
+    pub fn is_jumpdest(&self) -> bool {
+        use Opcode::*;
+        matches!(self, JUMPDEST)
+    }
+
+    pub fn is_log(&self) -> bool {
+        use Opcode::*;
+        matches!(self, LOG(_))
+    }
+
+    pub fn is_memory(&self) -> bool {
+        use Opcode::*;
+        matches!(self, MLOAD | MSIZE | MSTORE | MSTORE8)
+    }
+
+    pub fn is_pop(&self) -> bool {
+        use Opcode::*;
+        matches!(self, POP)
+    }
+
+    pub fn is_push(&self) -> bool {
+        use Opcode::*;
+        matches!(self, PUSH1(_) | PUSHn(_, _, _))
+    }
+
+    pub fn is_storage(&self) -> bool {
+        use Opcode::*;
+        matches!(self, SLOAD | SSTORE)
+    }
+
+    pub fn is_swap(&self) -> bool {
+        use Opcode::*;
+        matches!(self, SWAP(_))
+    }
+
     pub fn size(&self) -> usize {
         use Opcode::*;
         match self {

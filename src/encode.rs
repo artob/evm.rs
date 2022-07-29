@@ -6,7 +6,7 @@ pub fn encode_program(program: Program) -> Vec<u8> {
     encode_opcodes(&program.0)
 }
 
-pub fn encode_opcodes(opcodes: &Vec<Opcode>) -> Vec<u8> {
+pub fn encode_opcodes(opcodes: &[Opcode]) -> Vec<u8> {
     let mut bytecode = vec![];
     for opcode in opcodes.iter() {
         bytecode.push(encode_opcode(opcode));
