@@ -1,9 +1,10 @@
 // This is free and unencumbered software released into the public domain.
 
-use std::collections::BTreeSet;
+use std::{collections::BTreeSet, iter, slice};
 
 use crate::opcode::Opcode;
 
+#[derive(Clone, Debug, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Program(pub Vec<Opcode>);
 
 impl Program {
@@ -15,5 +16,14 @@ impl Program {
             }
         }
         result
+    }
+}
+
+impl<'a> iter::IntoIterator for &'a Program {
+    type Item = Opcode;
+    type IntoIter = iter::Cloned<slice::Iter<'a, Self::Item>>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.iter().cloned()
     }
 }
