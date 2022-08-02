@@ -130,6 +130,11 @@ impl Opcode {
         matches!(self, MLOAD | MSIZE | MSTORE | MSTORE8)
     }
 
+    pub fn is_one(&self) -> bool {
+        use Opcode::*;
+        matches!(self, PUSH1(1) | PUSHn(_, u256::ONE, _))
+    }
+
     pub fn is_pop(&self) -> bool {
         use Opcode::*;
         matches!(self, POP)
@@ -148,6 +153,11 @@ impl Opcode {
     pub fn is_swap(&self) -> bool {
         use Opcode::*;
         matches!(self, SWAP(_))
+    }
+
+    pub fn is_zero(&self) -> bool {
+        use Opcode::*;
+        matches!(self, PUSH1(0) | PUSHn(_, u256::ZERO, _))
     }
 
     pub fn size(&self) -> usize {
